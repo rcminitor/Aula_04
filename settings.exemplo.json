@@ -1,0 +1,17 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "ANTHROPIC_AUTH_TOKEN": "sk-or-v1-COLE_SUA_CHAVE_AQUI",
+    "ANTHROPIC_API_KEY": "",
+    "ANTHROPIC_MODEL": "qwen/qwen3.8-27b:free"
+  },
+  "model": "qwen/qwen3.8-27b:free",
+  "permissions": {
+    "allow": [
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(python *)"
+    ]
+  },
+  "disableClaudeAiConnectors": true
+}

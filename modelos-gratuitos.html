@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modelos gratuitos do OpenRouter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{
+    --paper:#eef1f0; --surface:#ffffff; --surface-2:#e4e9e9;
+    --ink:#0c1f27; --ink-soft:#3d545e; --ink-faint:#71878f;
+    --line:#d3dcdc; --line-soft:#e3eaea;
+    --accent:#0e8c9b; --accent-ink:#06616e; --accent-glow:rgba(14,140,155,.16);
+    --amber:#b3711a; --amber-soft:#f7efdf; --danger:#9c3320;
+    --term-bg:#08191f; --term-ink:#dcebec; --term-line:#1e3a44; --term-dim:#5c8994;
+    --shadow-s:0 1px 2px rgba(12,31,39,.07);
+    --shadow-l:0 24px 60px -34px rgba(12,31,39,.5), 0 2px 6px rgba(12,31,39,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#081519; --surface:#0f242c; --surface-2:#163038;
+      --ink:#e8f1f1; --ink-soft:#adc3c8; --ink-faint:#7b949c;
+      --line:#20404a; --line-soft:#193640;
+      --accent:#3dc2d0; --accent-ink:#86e0e9; --accent-glow:rgba(61,194,208,.18);
+      --amber:#e0a94f; --amber-soft:#241f14; --danger:#ec9581;
+      --term-bg:#041014; --term-ink:#dcebec; --term-line:#1b353f; --term-dim:#5c8994;
+      --shadow-s:0 1px 2px rgba(0,0,0,.5);
+      --shadow-l:0 30px 70px -40px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#081519; --surface:#0f242c; --surface-2:#163038;
+    --ink:#e8f1f1; --ink-soft:#adc3c8; --ink-faint:#7b949c;
+    --line:#20404a; --line-soft:#193640;
+    --accent:#3dc2d0; --accent-ink:#86e0e9; --accent-glow:rgba(61,194,208,.18);
+    --amber:#e0a94f; --amber-soft:#241f14; --danger:#ec9581;
+    --term-bg:#041014; --term-ink:#dcebec; --term-line:#1b353f; --term-dim:#5c8994;
+    --shadow-s:0 1px 2px rgba(0,0,0,.5);
+    --shadow-l:0 30px 70px -40px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:"Source Sans 3",ui-sans-serif,system-ui,sans-serif; font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif; text-wrap:balance; margin:0; letter-spacing:-.022em}
+  code,pre,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+  a{color:var(--accent-ink); text-underline-offset:3px}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+
+  .hero{color:#eaf5f6; background:radial-gradient(900px 380px at 82% -20%, rgba(61,194,208,.22), transparent 60%), linear-gradient(165deg,#08191f 0%,#0d2d36 60%,#113f4a 100%); border-bottom:1px solid rgba(255,255,255,.08)}
+  .hero .in{max-width:960px; margin:0 auto; padding-inline:16px; padding-block:clamp(34px,5vw,60px) clamp(30px,4vw,46px)}
+  .back{display:inline-flex; align-items:center; gap:7px; color:#8ad6e0; font-size:13px; text-decoration:none; font-family:"JetBrains Mono",monospace; letter-spacing:.08em}
+  .back:hover{color:#c9eff3}
+  .hero h1{margin:16px 0 0; font-size:clamp(31px,5.6vw,54px); font-weight:800; line-height:1.02; color:#fff}
+  .hero p{margin:14px 0 0; color:#b7d1d7; max-width:56ch; font-size:clamp(16px,2vw,19px)}
+
+  .wrap{max-width:960px; margin:0 auto; padding-inline:16px; padding-block:clamp(32px,4vw,48px) 60px; display:flex; flex-direction:column; gap:34px}
+  .lede{font-family:"Bricolage Grotesque",sans-serif; font-size:clamp(18px,2.3vw,22px); line-height:1.5; color:var(--ink-soft); max-width:62ch; margin:0}
+  .lede b{color:var(--ink); font-weight:600}
+  section{display:flex; flex-direction:column; gap:14px}
+  h2{font-size:clamp(22px,3.2vw,29px); font-weight:800}
+  h3{font-size:17px; font-weight:600}
+  p{margin:0; max-width:64ch}
+  ul,ol{margin:0; padding-left:22px; display:flex; flex-direction:column; gap:8px; max-width:64ch}
+  li::marker{color:var(--accent)}
+  code:not(pre code){background:var(--surface-2); border:1px solid var(--line-soft); border-radius:5px; padding:1px 5px; font-size:.86em; color:var(--accent-ink)}
+
+  .anatomy{border:1px solid var(--line); border-radius:14px; background:var(--surface); padding:22px; box-shadow:var(--shadow-s); display:flex; flex-direction:column; gap:14px}
+  .slug{font-family:"JetBrains Mono",monospace; font-size:clamp(14px,2.6vw,21px); display:flex; flex-wrap:wrap; align-items:center; gap:2px}
+  .slug u{text-decoration:none; padding:4px 7px; border-radius:7px}
+  .slug .a{background:var(--accent-glow); color:var(--accent-ink)}
+  .slug .b{background:var(--amber-soft); color:var(--amber)}
+  .slug .s{color:var(--ink-faint)}
+  .legend{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px}
+  .legend div{border-left:2px solid var(--line); padding-left:12px}
+  .legend dt{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint)}
+  .legend dd{margin:4px 0 0; font-size:15px; color:var(--ink-soft); line-height:1.45}
+
+  .tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--surface); box-shadow:var(--shadow-s)}
+  table{border-collapse:collapse; width:100%; min-width:620px; font-size:15px}
+  th,td{text-align:left; padding:12px 16px; border-bottom:1px solid var(--line-soft); vertical-align:top}
+  thead th{background:var(--surface-2); font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); font-weight:600}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:var(--surface-2)}
+  td.id{font-family:"JetBrains Mono",monospace; font-size:12.5px; color:var(--accent-ink); white-space:nowrap}
+  td.ctx{font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--ink-soft)}
+  .pick{background:var(--accent-glow)!important}
+  .pick td.id::after{content:"sugerido"; margin-left:9px; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); border:1px solid var(--accent); border-radius:999px; padding:2px 7px}
+
+  .term{background:var(--term-bg); border:1px solid var(--term-line); border-radius:12px; overflow:hidden; box-shadow:var(--shadow-l)}
+  .term header{display:flex; align-items:center; justify-content:space-between; padding:8px 10px 8px 14px; border-bottom:1px solid var(--term-line)}
+  .term header span{font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--term-dim)}
+  .term button{font-family:"JetBrains Mono",monospace; font-size:10.5px; color:#9fc6ce; background:transparent; border:1px solid var(--term-line); border-radius:7px; padding:4px 10px; cursor:pointer}
+  .term button:hover{background:#12303a; color:#dff0f2}
+  .term pre{margin:0; padding:15px 16px; overflow-x:auto; color:var(--term-ink); font-size:13.5px; line-height:1.75}
+  .term .p{color:var(--term-dim); user-select:none}
+  .term .c{color:#e8c07a}
+
+  .note{border-left:3px solid var(--amber); background:var(--amber-soft); padding:15px 18px; border-radius:0 12px 12px 0; font-size:15.5px; color:var(--ink-soft); max-width:none}
+  .note b{color:var(--ink)}
+  .stamp{font-family:"JetBrains Mono",monospace; font-size:11.5px; color:var(--ink-faint); letter-spacing:.06em}
+
+  footer{background:var(--surface); border-top:1px solid var(--line)}
+  .foot{max-width:960px; margin:0 auto; padding:26px 16px calc(44px + env(safe-area-inset-bottom,0px)); display:flex; flex-wrap:wrap; gap:12px 30px; justify-content:space-between; align-items:flex-end}
+  .foot .who{font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:19px}
+  .foot .where{color:var(--ink-faint); font-size:14px; margin-top:3px}
+  .foot .mail{font-family:"JetBrains Mono",monospace; font-size:13px; color:var(--ink-soft)}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important; transition:none!important}}
+</style>
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="hero">
+  <div class="in">
+    <a class="back" href="index.html">← voltar ao roteiro da Aula 04</a>
+    <h1>Modelos gratuitos do OpenRouter</h1>
+    <p>Qual nome colocar em <code style="color:#a6e6ee;background:rgba(255,255,255,.08);border:0">ANTHROPIC_MODEL</code>, como achar a lista atual e o que muda de um modelo para outro.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="lede">O OpenRouter é um intermediário: ele entrega o seu pedido a dezenas de modelos diferentes, de empresas diferentes. Os marcados com <b>:free</b> não cobram nada — em troca, têm limite diário de uso e podem sair do ar sem aviso.</p>
+
+  <section>
+    <h2>Como se lê o nome de um modelo</h2>
+    <div class="anatomy">
+      <div class="slug"><u class="a">qwen</u><u class="s">/</u><u class="b">qwen3.8-27b</u><u class="s">:</u><u class="a">free</u></div>
+      <dl class="legend">
+        <div><dt>Autor</dt><dd>Quem treinou o modelo: Qwen (Alibaba), Google, Meta, e assim por diante.</dd></div>
+        <div><dt>Modelo</dt><dd>A versão. O número costuma indicar o tamanho — 27B são 27 bilhões de parâmetros.</dd></div>
+        <div><dt>Sufixo</dt><dd><code>:free</code> é a faixa sem cobrança. Sem o sufixo, o uso é pago por token.</dd></div>
+      </dl>
+      <p>Esse nome inteiro, com a barra e os dois-pontos, é o que vai entre aspas no arquivo de configuração. Errou uma letra, o Claude responde <code>model not found</code>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Gratuitos disponíveis hoje</h2>
+    <p class="stamp">Consultado na API do OpenRouter em 19/09/2026 · a lista muda com frequência</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Nome para copiar</th><th>Modelo</th><th>Contexto</th><th>Autor</th></tr></thead>
+        <tbody>
+          <tr class="pick"><td class="id">qwen/qwen3.8-27b:free</td><td>Qwen3.8 27B</td><td class="ctx">262.144</td><td>Alibaba</td></tr>
+          <tr><td class="id">nex-agi/nex-n2.5-pro:free</td><td>Nex-N2.5-Pro</td><td class="ctx">262.144</td><td>Nex AGI</td></tr>
+          <tr><td class="id">nex-agi/nex-n2.5-mini:free</td><td>Nex-N2.5-Mini</td><td class="ctx">262.144</td><td>Nex AGI</td></tr>
+          <tr><td class="id">inclusionai/ling-3.0-flash-vl:free</td><td>Ling 3.0 Flash VL</td><td class="ctx">262.144</td><td>InclusionAI</td></tr>
+          <tr><td class="id">inclusionai/ling-3.0-flash-fin:free</td><td>Ling 3.0 Flash Fin</td><td class="ctx">262.144</td><td>InclusionAI</td></tr>
+          <tr><td class="id">inclusionai/ling-3.0-flash-sante:free</td><td>Ling 3.0 Flash Sante</td><td class="ctx">262.144</td><td>InclusionAI</td></tr>
+          <tr><td class="id">dots-studio/dots-3-note-preview:free</td><td>Dots3-Note Preview</td><td class="ctx">512.000</td><td>Dots Studio</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Contexto</b> é quanto texto o modelo consegue ler de uma vez, contado em tokens — mais ou menos três quartos de uma palavra cada. 262 mil tokens dão um livro inteiro, então para os exercícios da aula qualquer um da lista sobra.</p>
+    <p class="note"><b>Esta tabela envelhece.</b> Modelos gratuitos entram e saem toda semana — o <code>deepseek-chat-v3</code>, comum em tutoriais antigos, já não existe. Se o nome for recusado, pegue outro na lista viva, logo abaixo.</p>
+  </section>
+
+  <section>
+    <h2>Ver a lista viva</h2>
+    <p>No navegador, em <a href="https://openrouter.ai/models?q=free" target="_blank" rel="noopener">openrouter.ai/models</a>, filtrando por <i>free</i>. Ou direto do terminal, que já devolve os nomes prontos para copiar:</p>
+    <div class="term"><header><span>PowerShell</span><button type="button" data-copy="(Invoke-RestMethod https://openrouter.ai/api/v1/models).data | Where-Object { $_.id -like '*:free' } | Select-Object id, @{n='contexto';e={$_.context_length}} | Format-Table -AutoSize">copiar</button></header><pre><span class="p">PS&gt;</span> <span class="c">(Invoke-RestMethod https://openrouter.ai/api/v1/models).data |
+      Where-Object { $_.id -like '*:free' } |
+      Select-Object id, @{n='contexto';e={$_.context_length}} |
+      Format-Table -AutoSize</span></pre></div>
+  </section>
+
+  <section>
+    <h2>Trocar de modelo</h2>
+    <ol>
+      <li>Abra <code>.claude\settings.local.json</code> na pasta da aula.</li>
+      <li>Troque o valor de <code>ANTHROPIC_MODEL</code> pelo nome novo, mantendo as aspas.</li>
+      <li>Salve, feche o Claude com <code>/exit</code> e abra de novo — a configuração é lida na partida.</li>
+    </ol>
+    <div class="term"><header><span>.claude\settings.local.json</span><button type="button" data-copy='"ANTHROPIC_MODEL": "qwen/qwen3.8-27b:free"'>copiar</button></header><pre>    <span class="c">"ANTHROPIC_MODEL"</span>: "qwen/qwen3.8-27b:free"</pre></div>
+  </section>
+
+  <section>
+    <h2>Quando o gratuito não dá conta</h2>
+    <ul>
+      <li><b>Erro 429</b> — você bateu o limite diário daquele modelo. Troque por outro da lista; o limite é por modelo.</li>
+      <li><b>Respostas curtas ou sem sentido</b> — modelos pequenos erram mais em código. Tente um maior, ou divida o pedido em partes.</li>
+      <li><b>O modelo sumiu da lista</b> — acontece. Pegue outro; nada no seu projeto precisa mudar além dessa linha.</li>
+      <li><b>Modelos pagos</b> — na mesma tela, sem o <code>:free</code>, cobram centavos por milhão de tokens e exigem cartão. Não são necessários para esta aula.</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <div class="foot">
+    <div>
+      <div class="who">Prof. Romulo Cesar</div>
+      <div class="where">Inteligência Artificial · IFCE Campus Caucaia · 2026.2</div>
+    </div>
+    <div class="mail">romulo.cesar@ifce.edu.br</div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-copy]");
+    if (!btn) return;
+    var txt = btn.getAttribute("data-copy");
+    var done = function () { var old = btn.textContent; btn.textContent = "copiado ✓";
+      setTimeout(function () { btn.textContent = old; }, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done, function () { fb(txt, done); });
+    } else { fb(txt, done); }
+  });
+  function fb(txt, done) {
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); document.execCommand("copy");
+      document.body.removeChild(ta); done();
+    } catch (err) {}
+  }
+  /* copiar o nome do modelo clicando na célula */
+  document.querySelectorAll("td.id").forEach(function (td) {
+    td.style.cursor = "copy"; td.title = "clique para copiar";
+    td.addEventListener("click", function () {
+      var v = td.textContent.trim();
+      var flash = function () { var o = td.style.background; td.style.background = "var(--accent-glow)";
+        setTimeout(function () { td.style.background = o; }, 500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(flash, function(){ fb(v, flash); });
+      else fb(v, flash);
+    });
+  });
+</script>
+</body>
+</html>

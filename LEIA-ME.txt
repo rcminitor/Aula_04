@@ -1,0 +1,62 @@
+AULA 04 - CLAUDE CODE COM OPENROUTER
+Inteligencia Artificial - IFCE Campus Caucaia - Prof. Romulo Cesar
+romulo.cesar@ifce.edu.br
+
+------------------------------------------------------------
+COMECE POR AQUI
+------------------------------------------------------------
+
+1. De um duplo clique em  index.html
+   Ele abre no navegador e traz o roteiro completo da aula,
+   em sete passos. Funciona sem internet (a formatacao muda
+   um pouco, o conteudo nao).
+
+2. Siga os passos na ordem. Cada um depende do anterior.
+
+3. No Passo 6 voce edita o arquivo
+   .claude\settings.local.json
+   colando a SUA chave do OpenRouter e o modelo escolhido.
+
+4. No Passo 7, dentro desta pasta, rode no PowerShell:
+   powershell -ExecutionPolicy Bypass -File .\verificar-ambiente.ps1
+   Ele diz o que ja esta certo e o que falta.
+
+------------------------------------------------------------
+O QUE E CADA ARQUIVO
+------------------------------------------------------------
+
+index.html ................ O roteiro da aula, em pagina web.
+                            Comece por ele.
+modelos-gratuitos.html .... Lista de modelos gratuitos do
+                            OpenRouter, como ler o nome de um
+                            modelo e como trocar de modelo.
+vs-code.html .............. Como abrir a pasta no VS Code,
+                            editar a configuracao e usar o
+                            terminal dentro do editor.
+TUTORIAL.md ............... O mesmo roteiro em texto puro.
+verificar-ambiente.ps1 .... Confere Node, npm, Claude Code e a
+                            sua configuracao.
+.claude\settings.local.json  A configuracao do projeto. E aqui
+                            que a sua chave entra.
+.gitignore ................ Impede que a sua chave va parar em
+                            um repositorio publico.
+
+------------------------------------------------------------
+AVISOS
+------------------------------------------------------------
+
+- A chave do OpenRouter e pessoal e vale como senha. Nao
+  publique, nao compartilhe no grupo da turma e nao deixe
+  salva em maquina compartilhada do laboratorio.
+
+- Mensagens "npm warn" nao sao erros. Se aparecer
+  "added N packages", a instalacao deu certo. Veja a secao
+  "Ler a saida do terminal" no index.html.
+
+- A lista de modelos gratuitos muda com frequencia. Se o
+  modelo configurado parar de responder, abra
+  modelos-gratuitos.html e escolha outro.
+
+- Nas maquinas do laboratorio o aluno nao instala programas.
+  Se o Node nao estiver na maquina, chame o professor ou use
+  a alternativa portatil descrita no Passo 1.
