@@ -263,7 +263,7 @@
 <span class="g">added 1 package in 12s</span>
 
 <span class="p">PS&gt;</span> claude
-<span class="y">✻ Claude Code</span> · modelo: qwen3.8-27b:free
+<span class="y">✻ Claude Code</span> · modelo: openrouter/free
 <span class="g">✔</span> conectado ao OpenRouter
 
 <span class="p">&gt;</span> explique o que é uma máscara /26<span class="cursor"></span></pre>
@@ -361,13 +361,8 @@ v24.19.0
         <div class="node">05</div>
         <div class="head"><span class="kicker">Acesso</span><h2>Escolher o modelo</h2></div>
         <div class="body">
-          <p>O nome de um modelo segue o padrão <code>autor/modelo:free</code> — por exemplo <code>qwen/qwen3.8-27b:free</code>, que é o sugerido para esta aula. Copie o nome inteiro, com a barra e os dois-pontos.</p>
-          <p><b><a href="modelos-gratuitos.html">Veja a página de modelos gratuitos</a></b> — ela traz a lista conferida, explica o que significa cada parte do nome e como trocar de modelo quando o seu parar de responder.</p>
-          <p class="note"><b>Atenção aos tutoriais antigos.</b> Muitos ainda mandam usar <code>deepseek/deepseek-chat-v3-0324:free</code>, que saiu do ar. Nome que não existe mais devolve <code>model not found</code>.</p>
-          <p>Para ver a lista atual pelo terminal:</p>
-          <div class="term"><header><span>PowerShell</span><button type="button" data-copy="(Invoke-RestMethod https://openrouter.ai/api/v1/models).data | Where-Object { $_.id -like '*:free' } | Select-Object -First 15 -ExpandProperty id">copiar</button></header><pre><span class="p">PS&gt;</span> <span class="c">(Invoke-RestMethod https://openrouter.ai/api/v1/models).data |
-      Where-Object { $_.id -like '*:free' } |
-      Select-Object -First 15 -ExpandProperty id</span></pre></div>
+          <p>Não é preciso escolher. Use <code>openrouter/free</code>: o próprio OpenRouter encaminha cada pedido para um modelo gratuito que esteja no ar. Assim a configuração não quebra quando um modelo sai da lista.</p>
+          <p>Quer fixar um modelo específico? <b><a href="modelos-gratuitos.html">Veja a página de modelos gratuitos</a></b>.</p>
         </div>
       </section>
 
@@ -375,16 +370,17 @@ v24.19.0
         <div class="node">06</div>
         <div class="head"><span class="kicker">Configuração</span><h2>Configurar o projeto</h2></div>
         <div class="body">
-          <p>Na pasta da aula, abra <code>.claude\settings.local.json</code> e preencha dois campos: a chave do Passo 4 e o modelo do Passo 5.</p>
+          <p>Na pasta da aula, abra <code>.claude\settings.local.json</code> e cole a chave do Passo 4 nos dois campos marcados.</p>
           <p>Dá para editar no Bloco de Notas, mas o recomendado é o editor: <b><a href="vs-code.html">abra a pasta no VS Code</a></b> — ele mostra os arquivos, avisa se o JSON ficar inválido e traz o terminal na mesma tela.</p>
-          <div class="term"><header><span>.claude\settings.local.json</span><button type="button" data-copy='{&#10;  "env": {&#10;    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",&#10;    "ANTHROPIC_AUTH_TOKEN": "sk-or-v1-COLE_SUA_CHAVE_AQUI",&#10;    "ANTHROPIC_API_KEY": "",&#10;    "ANTHROPIC_MODEL": "qwen/qwen3.8-27b:free"&#10;  },&#10;  "model": "qwen/qwen3.8-27b:free"&#10;}'>copiar</button></header><pre>{
+          <div class="term"><header><span>.claude\settings.local.json</span><button type="button" data-copy='{&#10;  "env": {&#10;    "OPENROUTER_API_KEY": "sk-or-v1-COLE_SUA_CHAVE_AQUI",&#10;    "ANTHROPIC_AUTH_TOKEN": "sk-or-v1-COLE_SUA_CHAVE_AQUI",&#10;    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",&#10;    "ANTHROPIC_MODEL": "openrouter/free",&#10;    "ANTHROPIC_API_KEY": "",&#10;    "ENABLE_TOOL_SEARCH": "false"&#10;  }&#10;}'>copiar</button></header><pre>{
   "env": {
-    <span class="c">"ANTHROPIC_BASE_URL"</span>: "https://openrouter.ai/api",
+    <span class="c">"OPENROUTER_API_KEY"</span>: "sk-or-v1-COLE_SUA_CHAVE_AQUI",
     <span class="c">"ANTHROPIC_AUTH_TOKEN"</span>: "sk-or-v1-COLE_SUA_CHAVE_AQUI",
+    <span class="c">"ANTHROPIC_BASE_URL"</span>: "https://openrouter.ai/api",
+    <span class="c">"ANTHROPIC_MODEL"</span>: "openrouter/free",
     <span class="c">"ANTHROPIC_API_KEY"</span>: "",
-    <span class="c">"ANTHROPIC_MODEL"</span>: "qwen/qwen3.8-27b:free"
-  },
-  <span class="c">"model"</span>: "qwen/qwen3.8-27b:free"
+    <span class="c">"ENABLE_TOOL_SEARCH"</span>: "false"
+  }
 }</pre></div>
           <p>Três detalhes derrubam a configuração:</p>
           <ol>
@@ -392,7 +388,8 @@ v24.19.0
             <li><code>ANTHROPIC_API_KEY</code> fica vazio. Com qualquer valor, o Claude tenta falar com a Anthropic em vez do OpenRouter.</li>
             <li>O arquivo é JSON: cada vírgula e aspas contam. Salve em UTF-8.</li>
           </ol>
-          <p class="note"><b>Por que a configuração mora dentro da pasta.</b> Este arquivo vale apenas neste projeto e tem precedência sobre o que estiver configurado no seu usuário. Cada pasta fica com a sua chave e o seu modelo, sem variável de ambiente global espalhada pela máquina — e, como o <code>.gitignore</code> ignora este arquivo, a chave não escapa junto com o código. A linha <code>"model"</code>, fora do bloco <code>env</code>, garante que a pasta vença qualquer modelo padrão já configurado na máquina.</p>
+          <p><code>ENABLE_TOOL_SEARCH</code> em <code>"false"</code> faz o Claude Code enviar as ferramentas direto ao modelo, em vez de usar um recurso de busca que os modelos gratuitos nem sempre suportam.</p>
+          <p class="note"><b>Por que a configuração mora dentro da pasta.</b> Este arquivo vale apenas neste projeto e tem precedência sobre o que estiver configurado no seu usuário. Cada pasta fica com a sua chave e o seu modelo, sem variável de ambiente global espalhada pela máquina — e, como o <code>.gitignore</code> ignora este arquivo, a chave não escapa junto com o código.</p>
         </div>
       </section>
 
@@ -414,7 +411,7 @@ v24.19.0
             <li>Peça ao Claude um script que calcule a quantidade de hosts de uma sub-rede <code>/26</code>.</li>
             <li>Rode o script e confira o resultado à mão.</li>
             <li>Peça a ele para explicar cada linha do que escreveu.</li>
-            <li>Troque o modelo no <code>settings.local.json</code> por outro da lista e repita a pergunta 1. Anote as diferenças entre as duas respostas.</li>
+            <li>Repita a pergunta 1 em uma nova sessão e compare as duas respostas — o <code>openrouter/free</code> pode ter usado modelos diferentes.</li>
           </ol>
         </div>
       </section>
@@ -455,8 +452,8 @@ v24.19.0
             <tr><td class="msg">claude não é reconhecido</td><td>Pasta global do npm fora do PATH</td><td>Rode <code>npm config get prefix</code> e acrescente ao PATH</td></tr>
             <tr><td class="msg">401</td><td>Chave errada, com espaço sobrando, ou <code>ANTHROPIC_API_KEY</code> preenchido</td><td>Revise o Passo 6</td></tr>
             <tr><td class="msg">404</td><td>Base URL com <code>/v1</code> no fim</td><td>Use <code>https://openrouter.ai/api</code></td></tr>
-            <tr><td class="msg">model not found</td><td>Nome do modelo digitado errado</td><td>Copie de novo em openrouter.ai/models</td></tr>
-            <tr><td class="msg">429</td><td>Limite diário do modelo gratuito</td><td>Troque para outro modelo <code>:free</code></td></tr>
+            <tr><td class="msg">model not found</td><td>Nome do modelo digitado errado</td><td>Use exatamente <code>openrouter/free</code></td></tr>
+            <tr><td class="msg">429</td><td>Limite diário do plano gratuito</td><td>Espere o limite renovar ou crie outra chave</td></tr>
             <tr><td class="msg">npm warn allow-scripts</td><td>O npm avisando que você ainda não revisou o script de instalação do pacote</td><td>Não é erro: o pacote foi instalado. Confirme com <code>claude --version</code></td></tr>
             <tr><td class="msg">npm error code EACCES</td><td>Sem permissão para gravar na pasta global do npm</td><td>Abra o PowerShell como administrador, ou use o Node portátil do Passo 1</td></tr>
             <tr><td class="msg">npm notice New version</td><td>Existe uma versão mais nova do npm</td><td>Aviso; pode ignorar durante a aula</td></tr>
@@ -474,7 +471,7 @@ v24.19.0
         <li><input type="checkbox" id="c2"><label for="c2"><code>npm --version</code> responde</label></li>
         <li><input type="checkbox" id="c3"><label for="c3"><code>claude --version</code> responde</label></li>
         <li><input type="checkbox" id="c4"><label for="c4">Chave criada no OpenRouter e colada no arquivo</label></li>
-        <li><input type="checkbox" id="c5"><label for="c5">Modelo gratuito escolhido e colado no arquivo</label></li>
+        <li><input type="checkbox" id="c5"><label for="c5"><code>openrouter/free</code> configurado no arquivo</label></li>
         <li><input type="checkbox" id="c6"><label for="c6">Verificador rodou sem nenhuma falha</label></li>
         <li><input type="checkbox" id="c7"><label for="c7">O Claude respondeu a uma pergunta no terminal</label></li>
         <li><input type="checkbox" id="c8"><label for="c8">Exercício da sub-rede feito e anotado</label></li>

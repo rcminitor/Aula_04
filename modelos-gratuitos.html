@@ -120,6 +120,7 @@
 
 <div class="wrap">
   <p class="lede">O OpenRouter é um intermediário: ele entrega o seu pedido a dezenas de modelos diferentes, de empresas diferentes. Os marcados com <b>:free</b> não cobram nada — em troca, têm limite diário de uso e podem sair do ar sem aviso.</p>
+  <p class="note"><b>Para a aula, use <code>openrouter/free</code>.</b> É o valor que já vem no arquivo de configuração: o OpenRouter escolhe sozinho um modelo gratuito que esteja no ar. Esta página serve para quem quer fixar um modelo específico.</p>
 
   <section>
     <h2>Como se lê o nome de um modelo</h2>
@@ -170,6 +171,7 @@
       <li>Abra <code>.claude\settings.local.json</code> na pasta da aula.</li>
       <li>Troque o valor de <code>ANTHROPIC_MODEL</code> pelo nome novo, mantendo as aspas.</li>
       <li>Salve, feche o Claude com <code>/exit</code> e abra de novo — a configuração é lida na partida.</li>
+      <li>Para voltar ao roteamento automático, recoloque <code>openrouter/free</code>.</li>
     </ol>
     <div class="term"><header><span>.claude\settings.local.json</span><button type="button" data-copy='"ANTHROPIC_MODEL": "qwen/qwen3.8-27b:free"'>copiar</button></header><pre>    <span class="c">"ANTHROPIC_MODEL"</span>: "qwen/qwen3.8-27b:free"</pre></div>
   </section>
@@ -177,7 +179,7 @@
   <section>
     <h2>Quando o gratuito não dá conta</h2>
     <ul>
-      <li><b>Erro 429</b> — você bateu o limite diário daquele modelo. Troque por outro da lista; o limite é por modelo.</li>
+      <li><b>Erro 429</b> — você bateu o limite diário. Espere renovar ou volte para <code>openrouter/free</code>, que procura outro modelo no ar.</li>
       <li><b>Respostas curtas ou sem sentido</b> — modelos pequenos erram mais em código. Tente um maior, ou divida o pedido em partes.</li>
       <li><b>O modelo sumiu da lista</b> — acontece. Pegue outro; nada no seu projeto precisa mudar além dessa linha.</li>
       <li><b>Modelos pagos</b> — na mesma tela, sem o <code>:free</code>, cobram centavos por milhão de tokens e exigem cartão. Não são necessários para esta aula.</li>

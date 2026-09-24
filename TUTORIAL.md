@@ -85,34 +85,27 @@ Se o comando `claude` não for encontrado, feche e reabra o PowerShell. Persisti
 
 ## Passo 5 — Escolher o modelo
 
-Na página <https://openrouter.ai/models?q=free> aparecem os modelos gratuitos. O nome de cada um (o *slug*) segue o padrão `autor/modelo:free`, por exemplo `qwen/qwen3.8-27b:free`.
+Não é preciso escolher. Use `openrouter/free`: o próprio OpenRouter encaminha cada pedido para um modelo gratuito que esteja no ar. Assim a configuração não quebra quando um modelo sai da lista.
 
-Copie o slug do modelo que você escolher. Modelos gratuitos têm limite diário de requisições — se ele parar de responder, troque o slug por outro da mesma lista.
-
-Para ver a lista pelo terminal:
-
-```powershell
-(Invoke-RestMethod https://openrouter.ai/api/v1/models).data | Where-Object { $_.id -like '*:free' } | Select-Object -First 15 -ExpandProperty id
-```
+Quer fixar um modelo específico? Veja `modelos-gratuitos.html`.
 
 ---
 
 ## Passo 6 — Configurar o projeto
 
-Abra o arquivo `.claude\settings.local.json` desta pasta e preencha dois campos:
-
-- `ANTHROPIC_AUTH_TOKEN`: a chave que você copiou no Passo 4;
-- `ANTHROPIC_MODEL`: o slug do Passo 5.
+Abra o arquivo `.claude\settings.local.json` desta pasta e cole a chave do Passo 4 nos dois campos marcados (`OPENROUTER_API_KEY` e `ANTHROPIC_AUTH_TOKEN`).
 
 O arquivo deve ficar assim:
 
 ```json
 {
   "env": {
-    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "OPENROUTER_API_KEY": "sk-or-v1-COLE_SUA_CHAVE_AQUI",
     "ANTHROPIC_AUTH_TOKEN": "sk-or-v1-COLE_SUA_CHAVE_AQUI",
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "ANTHROPIC_MODEL": "openrouter/free",
     "ANTHROPIC_API_KEY": "",
-    "ANTHROPIC_MODEL": "qwen/qwen3.8-27b:free"
+    "ENABLE_TOOL_SEARCH": "false"
   }
 }
 ```
@@ -122,6 +115,8 @@ Três detalhes que fazem a configuração falhar se estiverem errados:
 1. A base URL termina em `/api`, **sem** `/v1`. O Claude Code acrescenta o `/v1/messages` sozinho.
 2. `ANTHROPIC_API_KEY` fica **vazio**. Se tiver qualquer valor, o Claude tenta falar com a Anthropic em vez do OpenRouter.
 3. O arquivo é JSON: toda vírgula e aspas contam. Salve em UTF-8.
+
+`ENABLE_TOOL_SEARCH` em `"false"` faz o Claude Code enviar as ferramentas direto ao modelo, em vez de usar um recurso de busca que os modelos gratuitos nem sempre suportam.
 
 ---
 
@@ -149,7 +144,7 @@ Peça a ele, por exemplo: *"explique em três linhas o que é uma máscara de su
 1. Peça ao Claude para criar um script que calcule a quantidade de hosts de uma sub-rede /26.
 2. Rode o script e confira o resultado à mão.
 3. Peça a ele para explicar cada linha do que escreveu.
-4. Troque o modelo no `settings.local.json` por outro da lista e repita a pergunta 1. Anote as diferenças entre as duas respostas.
+4. Repita a pergunta 1 em uma nova sessão e compare as duas respostas — o `openrouter/free` pode ter usado modelos diferentes.
 
 ---
 
@@ -161,8 +156,8 @@ Peça a ele, por exemplo: *"explique em três linhas o que é uma máscara de su
 | `claude não é reconhecido` | Pasta global do npm fora do PATH | Rode `npm config get prefix` e acrescente ao PATH |
 | Erro 401 | Chave errada, com espaço sobrando, ou `ANTHROPIC_API_KEY` preenchido | Revise o Passo 6 |
 | Erro 404 | Base URL com `/v1` no fim | Use `https://openrouter.ai/api` |
-| `model not found` | Slug digitado errado | Copie de novo em openrouter.ai/models |
-| Erro 429 | Limite diário do modelo gratuito | Troque para outro modelo `:free` |
+| `model not found` | Nome do modelo digitado errado | Use exatamente `openrouter/free` |
+| Erro 429 | Limite diário do plano gratuito | Espere o limite renovar ou crie outra chave |
 | Script não executa | Política de execução do PowerShell | Use `powershell -ExecutionPolicy Bypass -File .\verificar-ambiente.ps1` |
 
 ---
@@ -171,7 +166,7 @@ Peça a ele, por exemplo: *"explique em três linhas o que é uma máscara de su
 
 | Aula 03 | Aula 04 |
 |---|---|
-| Modelo `openrouter/free`, que não é um slug válido | Slug real, escolhido pelo aluno na lista de gratuitos |
+| Configuração incompleta | `openrouter/free` com `ENABLE_TOOL_SEARCH` desligado |
 | Chave gravada no arquivo, igual para todos | Cada aluno usa a própria chave |
 | Sem verificação | Script `verificar-ambiente.ps1` |
 | Sem proteção da chave | `.gitignore` impede que o arquivo com a chave seja versionado |
@@ -185,7 +180,7 @@ Peça a ele, por exemplo: *"explique em três linhas o que é uma máscara de su
 - [ ] `npm --version` responde
 - [ ] `claude --version` responde
 - [ ] Chave criada no OpenRouter e colada no `settings.local.json`
-- [ ] Slug de um modelo gratuito colado no `settings.local.json`
+- [ ] `openrouter/free` configurado no `settings.local.json`
 - [ ] `verificar-ambiente.ps1` sem erros
 - [ ] O Claude respondeu a uma pergunta no terminal
 - [ ] Exercício feito e anotado

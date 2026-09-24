@@ -34,11 +34,13 @@ if (-not (Test-Path $cfgPath)) {
             Falha "Base URL deve ser https://openrouter.ai/api (sem /v1)"
         }
 
-        $tok = $cfg.env.ANTHROPIC_AUTH_TOKEN
-        if ($tok -like "sk-or-v1-*" -and $tok -notlike "*COLE_SUA_CHAVE*") {
-            Ok "Chave do OpenRouter preenchida"
-        } else {
-            Falha "Cole a sua chave do OpenRouter no campo ANTHROPIC_AUTH_TOKEN (Passo 4)"
+        foreach ($campo in "OPENROUTER_API_KEY", "ANTHROPIC_AUTH_TOKEN") {
+            $tok = $cfg.env.$campo
+            if ($tok -like "sk-or-v1-*" -and $tok -notlike "*COLE_SUA_CHAVE*") {
+                Ok "Chave do OpenRouter preenchida em $campo"
+            } else {
+                Falha "Cole a sua chave do OpenRouter no campo $campo (Passo 4)"
+            }
         }
 
         if ([string]::IsNullOrEmpty($cfg.env.ANTHROPIC_API_KEY)) {
@@ -51,7 +53,17 @@ if (-not (Test-Path $cfgPath)) {
         if ($modelo -match '^[^/]+/[^/]+$') {
             Ok "Modelo definido ($modelo)"
         } else {
-            Falha "ANTHROPIC_MODEL deve ser um slug do OpenRouter, ex.: autor/modelo:free"
+            Falha "ANTHROPIC_MODEL deve ser openrouter/free (ou outro slug autor/modelo:free)"
+        }
+
+        if ($cfg.PSObject.Properties.Name -contains "model") {
+            Falha "Apague a linha ""model"" fora do bloco env: ela passa por cima do ANTHROPIC_MODEL"
+        }
+
+        if ($cfg.env.ENABLE_TOOL_SEARCH -eq "false") {
+            Ok "ENABLE_TOOL_SEARCH desligado"
+        } else {
+            Falha "Defina ""ENABLE_TOOL_SEARCH"": ""false"" no bloco env (Passo 6)"
         }
     } catch {
         Falha "settings.local.json tem erro de sintaxe JSON - confira virgulas e aspas"

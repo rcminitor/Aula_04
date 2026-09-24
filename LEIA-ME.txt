@@ -15,7 +15,7 @@ COMECE POR AQUI
 
 3. No Passo 6 voce edita o arquivo
    .claude\settings.local.json
-   colando a SUA chave do OpenRouter e o modelo escolhido.
+   colando a SUA chave do OpenRouter nos dois campos marcados.
 
 4. No Passo 7, dentro desta pasta, rode no PowerShell:
    powershell -ExecutionPolicy Bypass -File .\verificar-ambiente.ps1
@@ -53,9 +53,9 @@ AVISOS
   "added N packages", a instalacao deu certo. Veja a secao
   "Ler a saida do terminal" no index.html.
 
-- A lista de modelos gratuitos muda com frequencia. Se o
-  modelo configurado parar de responder, abra
-  modelos-gratuitos.html e escolha outro.
+- O modelo configurado e openrouter/free: o OpenRouter escolhe
+  sozinho um modelo gratuito que esteja no ar. Para fixar um
+  modelo especifico, veja modelos-gratuitos.html.
 
 - Nas maquinas do laboratorio o aluno nao instala programas.
   Se o Node nao estiver na maquina, chame o professor ou use
