@@ -1,11 +1,11 @@
-# Aula 04 - verificacao do ambiente
+# Aula 03 - verificacao do ambiente
 # Uso: powershell -ExecutionPolicy Bypass -File .\verificar-ambiente.ps1
 
 $erros = 0
 function Ok($m)   { Write-Host "[OK]    $m" -ForegroundColor Green }
 function Falha($m){ Write-Host "[FALHA] $m" -ForegroundColor Red; $script:erros++ }
 
-Write-Host "`n=== Verificacao do ambiente - Aula 04 ===`n"
+Write-Host "`n=== Verificacao do ambiente - Aula 03 ===`n"
 
 # 1. Node
 $node = (node --version 2>$null)

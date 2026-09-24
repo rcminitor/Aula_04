@@ -247,7 +247,7 @@
   <canvas class="mesh" id="mesh" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <div>
-      <span class="tag"><s></s>IFCE Caucaia · Inteligência Artificial · Aula 04</span>
+      <span class="tag"><s></s>IFCE Caucaia · Inteligência Artificial · Aula 03</span>
       <h1>Claude Code <em>com OpenRouter</em></h1>
       <p class="sub">Quarta aula da disciplina de Inteligência Artificial: montar, na sua própria máquina, um assistente que roda no terminal e responde por um modelo de linguagem gratuito — e entender cada peça desse caminho.</p>
       <dl class="facts">
@@ -258,7 +258,7 @@
       </dl>
     </div>
     <div class="hero-term">
-      <div class="bar"><u></u><u></u><u></u><span>PowerShell — aula-04</span></div>
+      <div class="bar"><u></u><u></u><u></u><span>PowerShell — aula-03</span></div>
 <pre><span class="p">PS&gt;</span> npm install -g @anthropic-ai/claude-code
 <span class="g">added 1 package in 12s</span>
 
@@ -349,7 +349,7 @@ v24.19.0
           <ol>
             <li><b>Crie a conta.</b> Vá a <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a> e clique em <b>Sign in</b>, no canto superior direito. Dá para entrar com Google, GitHub ou e-mail — use o mesmo e-mail que você usa no curso, para não esquecer depois.</li>
             <li><b>Abra o painel de chaves.</b> Já logado, clique na sua foto no canto superior direito e escolha <b>Keys</b> no menu. O endereço direto é <a href="https://openrouter.ai/settings/keys" target="_blank" rel="noopener">openrouter.ai/settings/keys</a> — a tela começa vazia.</li>
-            <li><b>Clique em <span class="mono">Create Key</span>.</b> Abre uma janelinha com dois campos. No <i>Name</i>, escreva um apelido só para você reconhecer a chave depois — pode ser <code>ia-aula-04</code>, <code>meu-notebook</code>, o que quiser; esse nome não vai para lugar nenhum além da sua lista. O campo de limite de crédito pode ficar vazio.</li>
+            <li><b>Clique em <span class="mono">Create Key</span>.</b> Abre uma janelinha com dois campos. No <i>Name</i>, escreva um apelido só para você reconhecer a chave depois — pode ser <code>ia-aula-03</code>, <code>meu-notebook</code>, o que quiser; esse nome não vai para lugar nenhum além da sua lista. O campo de limite de crédito pode ficar vazio.</li>
             <li><b>Copie na hora.</b> A chave aparece uma única vez, com um botão de copiar ao lado. Ela começa com <code>sk-or-v1-</code> e tem umas 70 letras e números. Se fechar a janela sem copiar, não tem como ver de novo — apague essa chave e crie outra.</li>
             <li><b>Guarde em algum lugar seu</b> até o Passo 6: um bloco de notas do seu pendrive, o seu e-mail, o gerenciador de senhas. No Passo 6 ela vai para dentro do arquivo de configuração do projeto.</li>
           </ol>
@@ -563,9 +563,9 @@ v24.19.0
   function tally() { var n = boxes.filter(function (b) { return b.checked; }).length;
     if (count) count.textContent = n + " de " + boxes.length; }
   boxes.forEach(function (b) {
-    try { if (localStorage.getItem("aula04:" + b.id) === "1") b.checked = true; } catch (e) {}
+    try { if (localStorage.getItem("aula03:" + b.id) === "1") b.checked = true; } catch (e) {}
     b.addEventListener("change", function () {
-      try { localStorage.setItem("aula04:" + b.id, b.checked ? "1" : "0"); } catch (e) {}
+      try { localStorage.setItem("aula03:" + b.id, b.checked ? "1" : "0"); } catch (e) {}
       tally();
     });
   });

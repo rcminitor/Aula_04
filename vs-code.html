@@ -113,7 +113,7 @@
 <body>
 <header class="hero">
   <div class="in">
-    <a class="back" href="index.html">← voltar ao roteiro da Aula 04</a>
+    <a class="back" href="index.html">← voltar ao roteiro da Aula 03</a>
     <h1>Abrir o projeto no VS Code</h1>
     <p>Editar a configuração, rodar o terminal e conversar com o Claude sem sair do editor.</p>
   </div>
@@ -127,21 +127,21 @@
     <p>Essa é a parte que mais confunde: o Claude Code trabalha em cima da <b>pasta aberta</b>. Se você abrir só o <code>index.html</code> com dois cliques, ele não enxerga a configuração de <code>.claude</code>.</p>
     <p>Duas formas de abrir a pasta certa:</p>
     <ul>
-      <li>No VS Code: menu <b>File → Open Folder…</b> (<kbd>Ctrl</kbd>+<kbd>K</kbd> depois <kbd>Ctrl</kbd>+<kbd>O</kbd>), escolha a pasta <code>Teste_Aula_04</code> e confirme.</li>
+      <li>No VS Code: menu <b>File → Open Folder…</b> (<kbd>Ctrl</kbd>+<kbd>K</kbd> depois <kbd>Ctrl</kbd>+<kbd>O</kbd>), escolha a pasta <code>Teste_Aula_03</code> e confirme.</li>
       <li>Ou, já dentro da pasta no PowerShell, um comando só:</li>
     </ul>
-    <div class="term"><header><span>PowerShell</span><button type="button" data-copy="code .">copiar</button></header><pre><span class="p">PS C:\Users\...\Teste_Aula_04&gt;</span> <span class="c">code .</span></pre></div>
+    <div class="term"><header><span>PowerShell</span><button type="button" data-copy="code .">copiar</button></header><pre><span class="p">PS C:\Users\...\Teste_Aula_03&gt;</span> <span class="c">code .</span></pre></div>
     <p>O ponto significa “a pasta atual”. Na primeira vez o VS Code pergunta se você confia nos autores da pasta — é a sua própria pasta, então marque a caixa e clique em <b>Yes, I trust the authors</b>.</p>
   </section>
 
   <section>
     <h2>2. O que você vai ver</h2>
     <div class="vsc">
-      <div class="title">Teste_Aula_04 — Visual Studio Code</div>
+      <div class="title">Teste_Aula_03 — Visual Studio Code</div>
       <div class="cols">
         <div class="side">
           <b>Explorer</b>
-          <span>▾ TESTE_AULA_04</span>
+          <span>▾ TESTE_AULA_03</span>
           <i>▾ .claude</i>
           <span class="sel">settings.local.json</span>
           <i>index.html</i>
@@ -161,7 +161,7 @@
     "ENABLE_TOOL_SEARCH": "false"
   }
 }</div>
-          <p class="note">A barra de título mostra o nome da pasta aberta. Se não disser <b>Teste_Aula_04</b>, você abriu a pasta errada.</p>
+          <p class="note">A barra de título mostra o nome da pasta aberta. Se não disser <b>Teste_Aula_03</b>, você abriu a pasta errada.</p>
         </div>
       </div>
     </div>
@@ -212,7 +212,7 @@
         <thead><tr><th>Sintoma</th><th>O que fazer</th></tr></thead>
         <tbody>
           <tr><td class="k"><code>code</code> não é reconhecido</td><td>Abra o VS Code, aperte <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> e rode <b>Shell Command: Install 'code' command in PATH</b>. Depois reabra o PowerShell.</td></tr>
-          <tr><td class="k">O Claude não acha a configuração</td><td>A pasta aberta está errada. Confira o nome na barra de título e reabra pela pasta <code>Teste_Aula_04</code>.</td></tr>
+          <tr><td class="k">O Claude não acha a configuração</td><td>A pasta aberta está errada. Confira o nome na barra de título e reabra pela pasta <code>Teste_Aula_03</code>.</td></tr>
           <tr><td class="k">A pasta <code>.claude</code> não aparece</td><td>Em <b>File → Preferences → Settings</b>, procure por <code>files.exclude</code> e confira se <code>.claude</code> não está na lista de escondidos.</td></tr>
           <tr><td class="k">O terminal abre em outra pasta</td><td>Feche o painel e abra de novo com a pasta do projeto ativa, ou rode <code>cd</code> até ela.</td></tr>
         </tbody>

@@ -1,4 +1,4 @@
-# Aula 04 — Claude Code com OpenRouter
+# Aula 03 — Claude Code com OpenRouter
 
 Disciplina de Inteligência Artificial — IFCE Campus Caucaia — Prof. Romulo Cesar
 
@@ -76,7 +76,7 @@ Se o comando `claude` não for encontrado, feche e reabra o PowerShell. Persisti
 
 1. Acesse <https://openrouter.ai> e crie sua conta (pode entrar com Google ou GitHub).
 2. Clique no seu avatar → **Keys** → **Create Key**.
-3. No campo *Name*, escreva um apelido só para você reconhecer a chave depois, por exemplo `ia-aula-04`. Esse nome fica apenas na sua lista de chaves. O campo de limite de crédito pode ficar vazio.
+3. No campo *Name*, escreva um apelido só para você reconhecer a chave depois, por exemplo `ia-aula-03`. Esse nome fica apenas na sua lista de chaves. O campo de limite de crédito pode ficar vazio.
 4. **Copie a chave agora.** Ela começa com `sk-or-v1-` e só aparece uma vez.
 
 > A chave é pessoal e vale como sua senha. Não publique no GitHub, não mande no grupo da turma e não deixe em máquina compartilhada.
@@ -125,7 +125,7 @@ Três detalhes que fazem a configuração falhar se estiverem errados:
 Ainda no PowerShell, entre na pasta da aula e rode o verificador:
 
 ```powershell
-cd C:\Users\rcmin\Projetos\Teste_Aula_04
+cd C:\Users\rcmin\Projetos\Teste_Aula_03
 powershell -ExecutionPolicy Bypass -File .\verificar-ambiente.ps1
 ```
 
@@ -159,18 +159,6 @@ Peça a ele, por exemplo: *"explique em três linhas o que é uma máscara de su
 | `model not found` | Nome do modelo digitado errado | Use exatamente `openrouter/free` |
 | Erro 429 | Limite diário do plano gratuito | Espere o limite renovar ou crie outra chave |
 | Script não executa | Política de execução do PowerShell | Use `powershell -ExecutionPolicy Bypass -File .\verificar-ambiente.ps1` |
-
----
-
-## O que mudou em relação à Aula 03
-
-| Aula 03 | Aula 04 |
-|---|---|
-| Configuração incompleta | `openrouter/free` com `ENABLE_TOOL_SEARCH` desligado |
-| Chave gravada no arquivo, igual para todos | Cada aluno usa a própria chave |
-| Sem verificação | Script `verificar-ambiente.ps1` |
-| Sem proteção da chave | `.gitignore` impede que o arquivo com a chave seja versionado |
-| Sem roteiro | Este tutorial, com exercício e solução de problemas |
 
 ---
 
